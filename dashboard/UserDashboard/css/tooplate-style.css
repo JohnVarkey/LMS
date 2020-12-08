@@ -1,0 +1,393 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', arial, sans-serif;
+}
+
+body {
+	overflow-x: hidden;
+	background-color: #fff;
+	display: flex;
+	flex-direction: column;
+}
+
+ul {
+	list-style: none;
+	margin: 0px;
+}
+
+p {
+	font-size: 13px;
+	line-height: 24px;
+}
+
+.section-heading h2 {
+	margin-top: 0px;
+	margin-bottom: 60px;
+	text-align: center;
+	font-size: 24px;
+	text-transform: uppercase;
+	font-weight: 900;
+	color: #121212;
+}
+
+.page-direction-button a {
+	display: inline-block;
+	line-height: 60px;
+	width: 270px;
+	height: 60px;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	background-color: #ffe165;
+	font-size: 18px;
+	font-weight: 700;
+	color: #121212;
+	text-align: center;
+	text-decoration: none;
+	letter-spacing: 0px;
+}
+
+.page-direction-button a i {
+	margin-right: 5px;
+	font-size: 20px;
+}
+
+.primary-button a {
+	text-decoration: none;
+	margin-top: 15px;
+	width: auto;
+	padding: 0px 18px;
+	height: 36px;
+	background-color: #ffe165;
+	font-size: 13px;
+	color: #121212;
+	font-weight: 600;
+	display: inline-block;
+	text-align: center;
+	line-height: 36px;
+}
+
+
+.banner .Row{
+	display: flex;
+	flex-direction: row;
+	height: 100%;
+	width: 100%;
+}
+
+.banner .social-links {
+  	list-style: none;
+  	display: flex;
+	flex-direction: column;
+  
+}
+
+.banner .social-links li {
+  	text-align: center;
+  	margin: 10px 0px;
+  	transition: all 0.5s;
+}
+
+.banner .social-links a {
+	display:block;
+	transition: all 0.5s;
+	text-align: left;
+	text-decoration:none;
+	text-transform:uppercase;
+	letter-spacing: 0.5px;
+	color:#fff;
+	font-size: 17px;
+	font-weight: 400;
+	display: inline-block;
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	padding-left: 20px;
+	background-color: rgba(250, 250, 250, 0.1);
+}
+
+.banner .social-links a em {
+	font-style: normal;
+	font-weight: 700;
+}
+
+.banner .social-links a i {
+	float: right;
+	background-color: rgba(250, 250, 250, 0.2);
+	height: 60px;
+	width: 60px;
+	line-height: 60px;
+	text-align: center;
+	font-size: 36px;
+}
+
+.banner .social-links li:hover {
+  background-color: rgba(255, 225, 101, 0.5);
+}
+
+.banner .social-links li:hover i {
+  background-color: rgba(255, 225, 101, 0.3);
+}
+
+
+.banner {
+	background-image: url(../../../Assets/Images/login_bg.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	text-align: center;
+	height: 60vh;
+	margin-bottom: 30px;
+	
+
+}
+
+.banner .left-side {
+	text-align: left;
+	background-color: rgba(0, 0, 0, 0.5);
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	width: 30%;
+}
+
+.banner .page-direction-button {
+	margin-top: 120px;
+}
+
+.banner .logo{
+	height: 60%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.banner .logo  {
+	height: 70%;
+	max-width: 100%;
+}
+#inner-submit-form{
+	width: fit-content;
+	height: fit-content;
+	text-align: left;
+	background-color: rgba(250, 250, 250, 0.8);
+	padding: 15px;
+	border-radius: 10px;
+}
+
+.banner .submit-form {
+	width: 70%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+	
+}
+
+
+.submit-form h4 {
+	width: 100%;
+	font-size: 18px;
+	font-weight: 700;
+	margin-top: 0px;
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+	display: inline-block;
+	border-bottom: 1px solid #dbdada;
+}
+
+.submit-form h4 em {
+	font-style: normal;
+}
+
+.submit-form label {
+	margin-top: 10px;
+	float: left;
+	font-size: 12px;
+	text-transform: uppercase;
+	color: #121212;
+}
+
+.submit-form select {
+	margin-bottom: 10px;
+	width: 100%;
+	height: 36px;
+	border: none;
+	background-color: #e7e7e7;
+	font-size: 11px;
+	color: #9a9a9a;
+	outline: none;
+	padding: 0px 10px;
+	display: inline-block;
+}
+
+.submit-form .date {
+	margin-bottom: 10px;
+	width: 100%;
+	height: 36px;
+	border: none;
+	background-color: #e7e7e7;
+	font-size: 11px;
+	color: #9a9a9a;
+	outline: none;
+	padding-left: 15px;
+	margin-left: 0px;
+	display: inline-block;
+	box-shadow: none;
+	border-radius: 0px;
+}
+
+.submit-form input {
+	margin-top: 12px;
+	margin-left: 5px;
+	cursor: pointer;
+}
+
+.submit-form .radio-select {
+	margin-top: 15px;
+}
+
+.submit-form button {
+	margin-top: 30px;
+	margin-left: 5px;
+	width: 100%;
+	height: 36px;
+	background-color: #ffe165;
+	font-size: 13px;
+	color: #121212;
+	font-weight: 600;
+}
+
+
+.books img{
+	
+	width: 60%;
+}
+
+.books:hover{
+	background-color: #EFEEEE;
+} 
+
+#BookList{
+	
+	height: 65vh;
+}
+
+#BookList .container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-items: center;
+	height: 100%;
+	width: 100%;
+}
+
+#ListHeader{
+	border: .5px solid black;
+	padding: 10px 30px;
+	border-radius: 10px;
+	background-color: #EFEEEE;
+	
+}
+#ListHeader span{
+	
+	font-family: 'Roboto' , sans-serif;
+	font-weight: 500;
+	font-size:  2rem;
+}
+
+#BooksSection{
+	margin-top:30px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-items: center;
+	width: 80%;
+}
+
+.books{
+	margin: 5px;
+	padding: 10px;
+	width: 100%;
+
+}
+
+
+.text-content, .BookImage {
+	pointer-events: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+
+#BookDescContainer{
+	display: flex;
+	flex-direction: row;
+	height: 100vh;
+	width: 100vw;
+}
+
+
+
+
+@media (max-width: 991px) {
+
+	.banner .left-side {
+		text-align: center;
+		overflow: hidden;
+		padding-left: 0vh;
+		margin-left: -50vh;
+		margin-right: -50vh;
+		padding-right: 50vh;
+		padding-left: 50vh;
+	}
+
+	.banner .social-links {
+	  list-style: none;
+	  margin-top: 0px;
+	  padding-right: 15px;
+	  padding-left: 15px;
+	}
+
+	.banner .page-direction-button {
+		margin-top: 50px;
+	}
+
+	.banner .logo img {
+		padding-top: 40px;
+		max-width: 100%;
+	}
+
+	.banner .tabs-content {
+		margin-top: 60px;
+	}
+
+	.banner .submit-form {
+		margin: 30px 30px;
+	}
+
+
+	.page-heading .logo {
+		padding: 60px 0px;
+		text-align: center;
+	}
+
+	.page-heading .page-direction-button {
+		text-align: center;
+		margin-top: 0px;
+	}
+
+		
+}
+
+@media (max-width: 768px) {
+}
+
+@media (max-width: 480px) {
+}
+
+

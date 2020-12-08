@@ -1,0 +1,14 @@
+
+
+.accordion-toggle{
+    height: 35vh;
+}
+  
+
+
+.BookImage{
+    background-image: url("http://localhost/LMS/Assets/book_images/Vampire academy.jpg");
+    background-position: center;
+    background-repeat: none;
+    background-size: cover;
+}

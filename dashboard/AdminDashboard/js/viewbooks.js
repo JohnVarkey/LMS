@@ -1,0 +1,66 @@
+(function($) {
+
+    const checkLogin = () =>{
+        const user = localStorage.getItem("UserId");
+        
+        if(user==null)
+            location.replace("http://localhost/LMS/Login/login.html");
+            //console.log("herer");
+    }
+    checkLogin();
+
+    const tabledata= () => {
+        $.get(
+            "../php/GetBooks.php",
+            {
+                op: 1
+            },
+                function (response) {
+                    const data = JSON.parse(response);
+                    console.log(data);
+                    populateTable(data);
+                    
+            }
+        )
+    }
+    tabledata();
+    
+    const populateTable = (data)=>{
+        const parent = $("tbody");
+        data.forEach((row)=>{
+            var childEle = `
+                <tr 
+                    class="accordion-toggle" 
+                    id="tr-${row.BOOK_ID}" 
+                    data-parent="#tr-${row.BOOK_ID}" 
+                    href="#tr-${row.BOOK_ID}"
+                >
+                <td>${row.BOOK_ID}</td>
+                <td 
+                    class = "BookImage" 
+                    style = " 
+                                background-image: url('http://localhost/LMS/Assets/book_images/${row.IMAGE_URL}')
+                            "
+                ></td>
+                <td>${row.TITLE}</td>
+                <td>${row.AUTHOR}</td>
+                <td>${row.PUBLISHER}</td>
+                <td>
+                    <button type="button" data-id="bt-${row.BOOK_ID}" class="btn btn-primary" >
+                        +
+                    </button>
+                </td> 
+            </tr>
+            `;
+            parent.append(childEle);
+        })
+    }
+   
+    $("tbody").on("click",".accordion-toggle td button",(e)=>{
+        console.log(e.target);
+    })
+
+
+
+
+})(jQuery);  

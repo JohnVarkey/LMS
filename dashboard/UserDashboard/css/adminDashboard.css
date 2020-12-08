@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+#Container{
+    height: 100vh;
+    width: 100vw;
+    background-color: #E8E8E8;
+}
+
+#Logobar{
+    width: 100vw;
+    height: 16vh;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+#Logo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: 25px;
+    
+}
+
+#Title{
+    font-family: 'Parisienne', cursive;
+    color: #34B87B;
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+#innerContainer{
+    display: flex;
+    flex-direction: row;
+    height: 83vh;
+}
+
+#navbar{
+  background-color: lightblue;
+  height: 100%;
+  width: 20%;
+}
+#Content{
+  height: 100%;
+  background-color: grey;
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+}
+
+#image{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#image img{
+  width: 50%;
+  height: 65%;
+}
+
+#bookdata{
+  display: flex;
+  flex-direction: column;
+  width:100%;
+}
+
+#bookdata #bookdatatitle{
+  color: White;
+  font-size: 20px;
+  height: 6%;
+  border-bottom: 2px solid Red;
+  width:100%;
+}
+
+#bookdataform form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#ImageBook{
+  height: 100px;
+  width:100px
+}
+
+
+/* Toast styling */
+
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
