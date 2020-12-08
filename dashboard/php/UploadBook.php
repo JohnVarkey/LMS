@@ -40,42 +40,51 @@ function checkerr($conn,$result){
 function UploadImage(){
    global $conn;
 
-   /* Getting file name */
-   $filename = $_FILES['file']['name'];
-   
-   /* Location */
-   $location = "../../Assets/book_images/".$filename;  
-   $uploadOk = 1;
-   $imageFileType = pathinfo($location,PATHINFO_EXTENSION);
+   if(isset($_POST["id"])){
+      /* Getting file name */
+      $filename = $_POST["id"].$_FILES['file']['name'];
+      /* Location */
+      $location = "../../Assets/book_images/".$filename;  
+      $uploadOk = 1;
+      $imageFileType = pathinfo($location,PATHINFO_EXTENSION);
 
-   /* Valid Extensions */
-   $valid_extensions = array("jpg","jpeg","png");
-   
-   /* Check file extension */
-   if( !in_array(strtolower($imageFileType),$valid_extensions) ) {
-      $uploadOk = 0;
-   }
-   if($uploadOk == 0){
-      echo 0;
-   }else{
-      /* Upload file */
-      if(move_uploaded_file($_FILES['file']['tmp_name'],$location)){
-
-         $responseCode = array(
-            "code"=> 201,
-            "message"=> array(
-               "filename"=>$filename
-            )
-         );
-         echo json_encode($responseCode);
-      }else{
-         $responseCode = array(
-            "code"=> 500,
-            "message"=> "some Error Occured"
-         );
-         echo json_encode($responseCode);
+      /* Valid Extensions */
+      $valid_extensions = array("jpg","jpeg","png");
+      
+      /* Check file extension */
+      if( !in_array(strtolower($imageFileType),$valid_extensions) ) {
+         $uploadOk = 0;
       }
+
+      if($uploadOk == 0){
+         $responseCode = array(
+         "code"=> 401,
+         "message"=> "Image Extension not Valid. [jpg,jpeg,png]"
+      );
+      }else{
+         /* Upload file */
+         if(move_uploaded_file($_FILES['file']['tmp_name'],$location)){
+
+            $responseCode = array(
+               "code"=> 201,
+               "message"=> array(
+                  "filename"=>$filename
+               )
+            );
+         }else{
+            $responseCode = array(
+               "code"=> 500,
+               "message"=> "some Error Occured"
+            );
+         }
+      }
+   }else{
+      $responseCode = array(
+         "code"=> 401,
+         "message"=> "Book Id not found"
+      );
    }
+   echo json_encode($responseCode);
 }
 
 
@@ -152,6 +161,46 @@ function GetCardData(){
 
 }
 
+function DeleteBookWithId(){
+   global $conn;
+   $bookId = $_POST["bookId"];
+   mysqli_autocommit($conn,FALSE);
+
+   try{
+      $row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT IMAGE_URL as image FROM `image` WHERE BOOK_ID= $bookId"));
+      
+      //Deleting Image from Server
+      $file_pointer= "../../Assets/book_images/".$row["image"];
+      if(!unlink($file_pointer)) {  
+         throw new Exception("Deletion Error");
+      }  
+      else {    
+         mysqli_query($conn,"DELETE FROM `image` WHERE BOOK_ID= $bookId");
+         mysqli_query($conn,"DELETE FROM details WHERE BOOK_ID= $bookId");
+         mysqli_query($conn,"DELETE FROM book2 WHERE BOOK_ID= $bookId");
+         mysqli_query($conn,"DELETE FROM book1 WHERE BOOK_ID= $bookId");
+         
+         //Commiting the Transaction
+         mysqli_commit($conn);
+         $responseCode = array(
+            "code"=>201,
+            "message"=> "Successfull"
+         );
+      }  
+   }catch(Exception $e){
+
+      $flag=1;
+      mysqli_rollback($conn);
+      $responseCode = array(
+         "code"=>404,
+         "message"=> $e
+      );
+   }
+      
+   echo json_encode($responseCode);
+   mysqli_close($conn);
+}
+
 
 
 /**
@@ -169,6 +218,9 @@ if(isset($_REQUEST["op"]))
       case 3:
          GetCardData();
          break;
+      case 4:
+         DeleteBookWithId();
+      break;
          
       default:
          $responseCode = array(

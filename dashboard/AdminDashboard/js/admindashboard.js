@@ -39,11 +39,12 @@
     }
 
     $("#upload").click(function(e){
-        e.preventDefault();
+        e.preventDefault(); 
         var fd = new FormData();
         var files = $('#bookImage')[0].files[0];
         fd.append('op',1);
         fd.append('file',files);
+        fd.append("id",$('#bookId').val());
         $.ajax({
             type: "POST",
             url:"../php/UploadBook.php" ,

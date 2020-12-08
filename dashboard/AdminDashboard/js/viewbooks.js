@@ -57,8 +57,7 @@
     }
    
     $("tbody").on("click",".accordion-toggle td button",(e)=>{
-        const id = e.target.name.split("-")[1];
-
+        const Id = e.target.name.split("-")[1];
         const populateModal = (data) =>{
             
             const ids=[
@@ -85,7 +84,7 @@
             "../php/GetBooks.php",
             {
                 op: 3,
-                bookId: id
+                bookId: Id
             },
                 function (response) {
                     const data = JSON.parse(response);
@@ -96,11 +95,28 @@
                     }
                 }
         )
-
-
     })
 
-
+    $("#deleteBook").on("click",()=>{
+        const id = $("#BOOK_ID").val();
+        if(confirm("Do you want to Delete?")){
+            $.post(
+                "../php/UploadBook.php",
+                {
+                    op: 4,
+                    bookId: id
+                },
+                (response)=>{
+                    const {code, message} = JSON.parse(response);
+                    if(code==200){
+                        console.log(message);
+                    }else{
+                        console.log(message)
+                    }
+                }
+            )
+        }
+    })
 
 
 })(jQuery);  
