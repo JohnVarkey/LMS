@@ -46,7 +46,7 @@
                 <td>${row.AUTHOR}</td>
                 <td>${row.PUBLISHER}</td>
                 <td>
-                    <button type="button" data-id="bt-${row.BOOK_ID}" class="btn btn-primary" >
+                    <button type="button" name="bt-${row.BOOK_ID}" class="btn btn-primary" >
                         +
                     </button>
                 </td> 
@@ -57,7 +57,9 @@
     }
    
     $("tbody").on("click",".accordion-toggle td button",(e)=>{
-        console.log(e.target);
+        const id = e.target.name.split("-")[1];
+        console.log(id);
+
     })
 
 
