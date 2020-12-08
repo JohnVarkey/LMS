@@ -58,9 +58,26 @@
    
     $("tbody").on("click",".accordion-toggle td button",(e)=>{
         const id = e.target.name.split("-")[1];
+
         const populateModal = (data) =>{
-            console.log(data);
-            $('#DataModal').modal('show')     
+            
+            const ids=[
+                "AUTHOR",
+                "AVAILABLE",
+                "BOOK_ID",
+                "COPIES",
+                "DESCRIPTION",
+                "EDITION",
+                "PRICE",
+                "PUBLISHER",
+                "RELEASE_DATE",
+                "TITLE"
+            ];
+            ids.forEach((id)=>{
+                $(`#${id}`).val(data[id]);
+            })
+            $('#DataModal').modal('show');
+
         }
         
         

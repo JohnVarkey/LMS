@@ -275,15 +275,26 @@
                             Synopsis
                         </a>
                         <a 
-                        class="nav-item nav-link" 
-                        id="nav-Users-tab" 
-                        data-toggle="tab" 
-                        href="#nav-Users" 
-                        role="tab" 
-                        aria-controls="nav-Users" 
-                        aria-selected="false"
+                            class="nav-item nav-link" 
+                            id="nav-Users-tab" 
+                            data-toggle="tab" 
+                            href="#nav-Users" 
+                            role="tab" 
+                            aria-controls="nav-Users" 
+                            aria-selected="false"
                         >
                             Users
+                        </a>
+                        <a 
+                            class="nav-item nav-link" 
+                            id="nav-Actions-tab" 
+                            data-toggle="tab" 
+                            href="#nav-Actions" 
+                            role="tab" 
+                            aria-controls="nav-Actions" 
+                            aria-selected="false"
+                        >
+                            Actions
                         </a>
                     </div>
 
@@ -293,15 +304,62 @@
                 </div>
 
                 <div class="modal-body">
-                    <div class="tab-content" id="nav-tabContent">
-                        <form action="#nav-tabContent">
+                    <form  action="#nav-tabContent">
+                        <div class="tab-content" id="nav-tabContent">
+                            
                             <div 
                                 class="tab-pane fade show active" 
                                 id="nav-Info" 
                                 role="tabpanel" 
                                 aria-labelledby="nav-Info-tab"
                             >
-                                ..1.
+                                <div class="form-group">
+                                    <label for="BOOK_ID" >Book Id</label>
+                                    <input type="text" class="form-control form-control-user"
+                                    name="BOOK_ID" id="BOOK_ID" placeholder="Book Id" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="TITLE" >Book Title</label>
+                                    <input type="text" class="form-control form-control-user"
+                                    name="TITLE" id="TITLE"  placeholder="Book Title" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="AUTHOR" >Author</label>
+                                    <input type="text" class="form-control form-control-user"
+                                    name="AUTHOR" id="AUTHOR" placeholder="Author" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="PUBLISHER" >Publisher</label>
+                                    <input type="text" class="form-control form-control-user"
+                                    name="PUBLISHER" id="PUBLISHER"  placeholder="Publisher" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="COPIES" >Copies</label>
+                                    <input type="text" class="form-control form-control-user"
+                                    name="COPIES" id="COPIES"  placeholder="Copies" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="RELEASE_DATE">Release Date</label>
+                                    <input type="date" class="form-control form-control-user"
+                                    name="RELEASE_DATE" id="RELEASE_DATE"  placeholder="Release Date" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="EDITION">Edition</label>
+                                    <input type="text" class="form-control form-control-user"
+                                    name="EDITION" id="EDITION"  placeholder="Edition" required >
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="PRICE">Price(Rs)</label>
+                                    <input type="text" class="form-control form-control-user"
+                                    name="PRICE" id="PRICE" placeholder="Price" required >
+                                </div>
                             </div>
                             <div 
                                 class="tab-pane fade" 
@@ -309,7 +367,14 @@
                                 role="tabpanel" 
                                 aria-labelledby="nav-Synopsis-tab"
                             >
-                                ...2
+                                <textarea 
+                                    class="form-control"
+                                    name="DESCRIPTION" 
+                                    id="DESCRIPTION" 
+                                    placeholder="Synopsis" 
+                                    rows=10
+                                    required 
+                                ></textarea>
                             </div>
                             <div 
                                 class="tab-pane fade" 
@@ -319,8 +384,27 @@
                             >
                                 ..4.
                             </div>
-                        </form>
-                    </div>
+                            <div 
+                                class="tab-pane fade" 
+                                id="nav-Actions" 
+                                role="tabpanel"
+                                aria-labelledby="nav-Actions-tab"
+                            >
+                                <div class="form-group">
+                                    <label for="deleteBook">Delete Book: </label>
+                                    <input type="button" class="form-control form-control-user btn-danger"
+                                    name="deleteBook" id="deleteBook" value="Delete" >
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="submit">Confirm Edit: </label>
+                                    <input type="submit" class="form-control form-control-user btn-success"
+                                    name="submit" id="submit" value="Confirm">
+                                </div>
+
+                            </div>
+                        </div>
+                </form>
                 </div>
 
                 <div class="modal-footer">
