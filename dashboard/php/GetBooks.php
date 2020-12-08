@@ -3,6 +3,7 @@
 require_once '../../config.php';
 
 function GetAllData(){
+
     global $conn;
     $sql = "SELECT * FROM book1 , book2, image , details WHERE book1.BOOK_ID = book2.BOOK_ID AND book1.BOOK_ID = image.BOOK_ID AND book1.BOOK_ID = details.BOOK_ID  ";
     $result=mysqli_query($conn,$sql);
@@ -14,6 +15,7 @@ function GetAllData(){
 }
 
 function GetDataWithFilter($filters){
+
     global $conn;
     $title = $filters["title"];
     $author = $filters["author"];
@@ -25,13 +27,26 @@ function GetDataWithFilter($filters){
         array_push($responsedata, $row);
     }
     return json_encode($responsedata);
-    
-    
 }
 
-function GetBookData(){
+function GetBookDataWithId($bookId){
+ 
     global $conn;
-    return "Data";
+    $sql = "SELECT * FROM book1 , book2 , details WHERE book1.BOOK_ID = book2.BOOK_ID AND book1.BOOK_ID = details.BOOK_ID AND book1.BOOK_ID= $bookId";
+    if($result=mysqli_query($conn,$sql)){
+        $row = mysqli_fetch_assoc($result);
+        $responseCode = array(
+            "code"=> 200,
+            "message"=> $row
+        );
+        return json_encode($responseCode);
+    }else{
+        $responseCode = array(
+            "code"=> 404,
+            "message"=> mysqli_error($conn)
+        );
+        return json_encode($responseCode);
+    }
 }
 
 
@@ -44,8 +59,15 @@ if(isset($_GET['op'])){
         case 2:
             echo GetDataWithFilter($_GET['filter']);
             break;
+        case 3:
+            echo GetBookDataWithId($_GET["bookId"]);
+            break;
         default:
-            echo "Error Occured";
+            $responseCode = array(
+                "code"=> 404,
+                "message"=> "OP Error"
+            );
+            echo json_encode($responseCode);
             break;
     }
 }else{

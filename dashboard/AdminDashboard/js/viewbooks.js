@@ -58,7 +58,28 @@
    
     $("tbody").on("click",".accordion-toggle td button",(e)=>{
         const id = e.target.name.split("-")[1];
-        console.log(id);
+        const populateModal = (data) =>{
+            console.log(data);
+            $('#DataModal').modal('show')     
+        }
+        
+        
+        $.get(
+            "../php/GetBooks.php",
+            {
+                op: 3,
+                bookId: id
+            },
+                function (response) {
+                    const data = JSON.parse(response);
+                    if(data.code==200){
+                        populateModal(data.message);  
+                    }else{
+                        console.log("error:", data.message)
+                    }
+                }
+        )
+
 
     })
 
