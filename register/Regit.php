@@ -3,10 +3,10 @@
 require_once '../config.php';
 
 if($_POST['submit']){
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $name = $_POST['name'];
-    $phone = $_POST['phone'];
+    $email = getEscapedString($_POST['email']);
+    $password = getEscapedString($_POST['password']);
+    $name = getEscapedString($_POST['name']);
+    $phone = getEscapedString($_POST['phone']);
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     $sql = "INSERT INTO `user` (`Email`, `NAME`, `PASSWORD`, `PHONE_NUMBER`) VALUES ( '$email', '$name', '$hashed_password','$phone')";

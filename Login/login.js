@@ -88,7 +88,7 @@
         url: url ,
         data: form.serialize(),
         success: function (response) {
-    
+            console.log(response);
             const data = JSON.parse(response);
             if(data.code!=200){
               displayToast(data.message);

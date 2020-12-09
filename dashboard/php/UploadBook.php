@@ -6,8 +6,6 @@ $file_path = "../../Assets/book_images/";
 
 
 
-
-
 /**
  * @desc: checks if the query was successfully excecuted. throws Exception if Error
  * @input: $result=> the $result object after excucution of a query
@@ -46,13 +44,14 @@ function checkerr($conn,$result){
 
 
 
-
 function UploadImage(){
    global $conn, $file_path;
 
    if(isset($_POST["id"])){
+
+      $id= getEscapedString($_POST["id"]);
       /* Getting file name */
-      $filename = $_POST["id"].$_FILES['file']['name'];
+      $filename = $id.getEscapedString($_FILES['file']['name']);
       /* Location */
       $location = $file_path.$filename;  
       $uploadOk = 1;
@@ -104,16 +103,16 @@ function UploadImage(){
 
 function UploadToDB(){
    global $conn;
-   $bookTitle=$_GET["bookTitle"];
-   $bookId=$_GET["bookId"];
-   $bookAuthor=$_GET["bookAuthor"];
-   $bookPublisher=$_GET["bookPublisher"];
-   $bookCopies=$_GET["bookCopies"];
-   $bookImageUrl=$_GET["bookImageUrl"];
-   $bookReleaseDate=$_GET["bookReleaseDate"];
-   $bookDescription=$_GET["bookDescription"];
-   $bookPrice=$_GET["bookPrice"];
-   $bookEdition = $_GET["bookEdition"];
+   $bookTitle=getEscapedString($_GET["bookTitle"]);
+   $bookId=getEscapedString($_GET["bookId"]);
+   $bookAuthor=getEscapedString($_GET["bookAuthor"]);
+   $bookPublisher=getEscapedString($_GET["bookPublisher"]);
+   $bookCopies=getEscapedString($_GET["bookCopies"]);
+   $bookImageUrl=getEscapedString($_GET["bookImageUrl"]);
+   $bookReleaseDate=getEscapedString($_GET["bookReleaseDate"]);
+   $bookDescription=getEscapedString($_GET["bookDescription"]);
+   $bookPrice=getEscapedString($_GET["bookPrice"]);
+   $bookEdition = getEscapedString($_GET["bookEdition"]);
    $date = date('Y-m-d', strtotime($bookReleaseDate));
 
    /**
@@ -194,10 +193,10 @@ function DeleteBookFromServer($path){
 
 
 
-function DeleteBookWithId(){
+function DeleteBookWithId($string){
    global $conn;
 
-   $bookId = $_POST["bookId"];
+   $bookId = getEscapedString($string);
    mysqli_autocommit($conn,FALSE);
 
    try{
@@ -242,15 +241,15 @@ function DeleteBookWithId(){
 function EditBookInDB(){
 
    global $conn;
-   $bookTitle=$_GET["TITLE"];
-   $bookId=$_GET["BOOK_ID"];
-   $bookAuthor=$_GET["AUTHOR"];
-   $bookPublisher=$_GET["PUBLISHER"];
-   $bookCopies=$_GET["COPIES"];
-   $bookReleaseDate=$_GET["RELEASE_DATE"];
-   $bookDescription=$_GET["DESCRIPTION"];
-   $bookPrice=$_GET["PRICE"];
-   $bookEdition = $_GET["EDITION"];
+   $bookTitle=getEscapedString($_GET["TITLE"]);
+   $bookId=getEscapedString($_GET["BOOK_ID"]);
+   $bookAuthor=getEscapedString($_GET["AUTHOR"]);
+   $bookPublisher=getEscapedString($_GET["PUBLISHER"]);
+   $bookCopies=getEscapedString($_GET["COPIES"]);
+   $bookReleaseDate=getEscapedString($_GET["RELEASE_DATE"]);
+   $bookDescription=getEscapedString($_GET["DESCRIPTION"]);
+   $bookPrice=getEscapedString($_GET["PRICE"]);
+   $bookEdition = getEscapedString($_GET["EDITION"]);
    $date = date('Y-m-d', strtotime($bookReleaseDate));
 
    /**

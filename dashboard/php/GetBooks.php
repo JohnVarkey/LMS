@@ -17,10 +17,10 @@ function GetAllData(){
 function GetDataWithFilter($filters){
 
     global $conn;
-    $title = $filters["title"];
-    $author = $filters["author"];
-    $publisher = $filters["publisher"];
-    $sql = "SELECT * FROM book1 , book2, image WHERE book1.BOOK_ID = book2.BOOK_ID AND book1.BOOK_ID = image.BOOK_ID AND book1.TITLE LIKE \"$title%\" AND book1.AUTHOR LIKE \"$author%\" AND book1.PUBLISHER LIKE \"$publisher%\"";      // AND book1.TITLE LIKE '%$filters['title']%' AND book1.AUTHOR LIKE '%J%'
+    $title = getEscapedString($filters["title"]);
+    $author = getEscapedString($filters["author"]);
+    $publisher = getEscapedString($filters["publisher"]);
+    $sql = "SELECT * FROM book1 , book2, image WHERE book1.BOOK_ID = book2.BOOK_ID AND book1.BOOK_ID = image.BOOK_ID AND book1.TITLE LIKE \"$title%\" AND book1.AUTHOR LIKE \"$author%\" AND book1.PUBLISHER LIKE \"$publisher%\"";      
     $result=mysqli_query($conn,$sql);
     $responsedata= [];
     while($row = mysqli_fetch_assoc($result)){
@@ -33,6 +33,7 @@ function GetDataWithFilter($filters){
 function GetBookDataWithId($bookId){
  
     global $conn;
+    $bookId= getEscapedString($bookId);
     $sql = "SELECT * FROM book1 , book2 , details WHERE book1.BOOK_ID = book2.BOOK_ID AND book1.BOOK_ID = details.BOOK_ID AND book1.BOOK_ID= $bookId";
     if($result=mysqli_query($conn,$sql)){
         $row = mysqli_fetch_assoc($result);

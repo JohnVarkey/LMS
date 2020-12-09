@@ -16,6 +16,7 @@
                 op: 3
             },
             function (response) {
+
                 const {users, borrowers, books} = JSON.parse(response);
                 $("#totalUsers").text(users);
                 $("#totalBorrowers").text(borrowers);

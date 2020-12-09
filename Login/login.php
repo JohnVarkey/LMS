@@ -2,8 +2,8 @@
 
 require_once '../config.php';
 
-$email = $_POST['name'];
-$password = $_POST['password'];
+$email = getEscapedString($_POST['name']);
+$password =getEscapedString($_POST['password']);
 // sets flag is error occured.  TRUE => Error
 $flag=True; 
 
@@ -28,7 +28,7 @@ if(mysqli_num_rows($result) == 0){
 if($flag){
     $responseCode = array(
         "code"=>403,
-        "message"=> "Password or Username Is Incorrect"
+        "message"=> $password
         );
 }else{
     if($row['ROLE']=="1")
