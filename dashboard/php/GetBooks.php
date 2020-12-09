@@ -29,6 +29,7 @@ function GetDataWithFilter($filters){
     return json_encode($responsedata);
 }
 
+
 function GetBookDataWithId($bookId){
  
     global $conn;

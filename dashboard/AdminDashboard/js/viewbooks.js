@@ -24,6 +24,16 @@
         )
     }
     tabledata();
+
+
+    $("#btn-Logout").click(function(e){
+        e.preventDefault()
+        localStorage.removeItem("UserId");
+        location.replace("http://localhost/LMS/Login/login.html");
+    
+    })
+
+    
     
     const populateTable = (data)=>{
         const parent = $("tbody");
@@ -62,7 +72,6 @@
             
             const ids=[
                 "AUTHOR",
-                "AVAILABLE",
                 "BOOK_ID",
                 "COPIES",
                 "DESCRIPTION",
@@ -116,6 +125,35 @@
                 }
             )
         }
+    })
+
+    const displayToast = message =>{
+        console.log(message);
+    }
+
+
+    $("#ModalForm").submit((e)=>{
+        e.preventDefault();
+        
+        const form = $(e.target).serializeArray();
+        form.push({name: "op", value: 5})
+        const  url = "../php/UploadBook.php"
+        $.get(
+            url ,
+            form,
+                function (response) {
+                    console.log("res",response);
+                    const data = JSON.parse(response);
+                    console.log(data);
+                    if(data.code==403)
+                        displayToast(data.message);
+                    else if(data.code==200)
+                        displayToast("Book Added");
+                    else{
+                        displayToast(data.message);
+                    }
+            }
+        )
     })
 
 

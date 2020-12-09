@@ -103,7 +103,7 @@
     $("#Logout").click(function(e){
         e.preventDefault()
         localStorage.removeItem("UserId");
-        location.replace("http://localhost/LMS/Login/login.html");
+        location.replace("../../Login/login.html");
     
     })
 

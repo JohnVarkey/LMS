@@ -52,17 +52,10 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item active">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link" >
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Manage Books</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item active" href="buttons.html">View All Books</a>
-                        <a class="collapse-item" href="cards.html">Edit Books</a>
-                    </div>
-                </div>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
@@ -240,7 +233,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" id="btn-Logout">Logout</a>
                 </div>
             </div>
         </div>
@@ -304,7 +297,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <form  action="#nav-tabContent">
+                    <form  action="../php/UploadBook.php" id="ModalForm">
                         <div class="tab-content" id="nav-tabContent">
                             
                             <div 

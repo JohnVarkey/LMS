@@ -2,6 +2,12 @@
 
 require_once '../../config.php';
 
+$file_path = "../../Assets/book_images/";
+
+
+
+
+
 /**
  * @desc: checks if the query was successfully excecuted. throws Exception if Error
  * @input: $result=> the $result object after excucution of a query
@@ -37,14 +43,18 @@ function checkerr($conn,$result){
    }
 }
 
+
+
+
+
 function UploadImage(){
-   global $conn;
+   global $conn, $file_path;
 
    if(isset($_POST["id"])){
       /* Getting file name */
       $filename = $_POST["id"].$_FILES['file']['name'];
       /* Location */
-      $location = "../../Assets/book_images/".$filename;  
+      $location = $file_path.$filename;  
       $uploadOk = 1;
       $imageFileType = pathinfo($location,PATHINFO_EXTENSION);
 
@@ -86,6 +96,10 @@ function UploadImage(){
    }
    echo json_encode($responseCode);
 }
+
+
+
+
 
 
 function UploadToDB(){
@@ -145,6 +159,7 @@ function UploadToDB(){
 } 
 
 
+
 function GetCardData(){
    global $conn;
    $sql = "SELECT \n"
@@ -161,20 +176,39 @@ function GetCardData(){
 
 }
 
+
+
+
+
+function DeleteBookFromServer($path){
+   global $file_path;
+   $file_pointer= $file_path.$path;
+   if(!unlink($file_pointer)){  
+      return false;
+   }else{
+      return true;
+   }
+}
+
+
+
+
+
 function DeleteBookWithId(){
    global $conn;
+
    $bookId = $_POST["bookId"];
    mysqli_autocommit($conn,FALSE);
 
    try{
+
+      //get Filename from DB
       $row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT IMAGE_URL as image FROM `image` WHERE BOOK_ID= $bookId"));
       
       //Deleting Image from Server
-      $file_pointer= "../../Assets/book_images/".$row["image"];
-      if(!unlink($file_pointer)) {  
+      if(!DeleteBookFromServer($row["image"])) {  
          throw new Exception("Deletion Error");
-      }  
-      else {    
+      }else{    
          mysqli_query($conn,"DELETE FROM `image` WHERE BOOK_ID= $bookId");
          mysqli_query($conn,"DELETE FROM details WHERE BOOK_ID= $bookId");
          mysqli_query($conn,"DELETE FROM book2 WHERE BOOK_ID= $bookId");
@@ -203,6 +237,66 @@ function DeleteBookWithId(){
 
 
 
+
+
+function EditBookInDB(){
+
+   global $conn;
+   $bookTitle=$_GET["TITLE"];
+   $bookId=$_GET["BOOK_ID"];
+   $bookAuthor=$_GET["AUTHOR"];
+   $bookPublisher=$_GET["PUBLISHER"];
+   $bookCopies=$_GET["COPIES"];
+   $bookReleaseDate=$_GET["RELEASE_DATE"];
+   $bookDescription=$_GET["DESCRIPTION"];
+   $bookPrice=$_GET["PRICE"];
+   $bookEdition = $_GET["EDITION"];
+   $date = date('Y-m-d', strtotime($bookReleaseDate));
+
+   /**
+    * sets the auto commit feature to false. now the query must be commited at the end
+    */
+   mysqli_autocommit($conn,FALSE);
+
+   /**
+    * For catching any error that may occur while executing the queries 
+    */
+   $flag=0;
+   try{
+      
+      $result=mysqli_query($conn,"UPDATE book1 SET TITLE = '$bookTitle', AUTHOR = '$bookAuthor', PUBLISHER = '$bookPublisher' WHERE BOOK_ID = $bookId");
+      checkerr($conn,$result);
+    
+      $result=mysqli_query($conn,"UPDATE book2 SET TITLE = '$bookTitle', AUTHOR = '$bookAuthor', `COPIES` = $bookCopies WHERE BOOK_ID = $bookId");
+      checkerr($conn,$result);
+    
+      $result=mysqli_query($conn,"UPDATE `details` SET RELEASE_DATE = '$date', EDITION = '$bookEdition', DESCRIPTION = '$bookDescription' WHERE BOOK_ID = $bookId");
+      checkerr($conn,$result);
+
+   }catch(Exception $e){
+
+      $flag=1;
+      mysqli_rollback($conn);
+   }finally{
+
+      //Commiting the Transaction
+      if(mysqli_commit($conn) && $flag==0){
+         $responseCode = array(
+            "code"=>200,
+            "message"=> "Successfull"
+         );
+      }else{
+         $responseCode = array(
+            "code"=>404,
+            "message"=> mysqli_error($conn)
+         );
+      }
+      echo json_encode($responseCode);
+   }
+ mysqli_close($conn);
+
+}
+
 /**
  * This is used to handle all the request coming to UploadBook.php
  * requests are differentiated using an op parameter passed along with the required data
@@ -220,8 +314,10 @@ if(isset($_REQUEST["op"]))
          break;
       case 4:
          DeleteBookWithId();
-      break;
-         
+         break;
+      case 5:
+         EditBookInDB();
+         break;
       default:
          $responseCode = array(
             "code"=> 404,
@@ -234,7 +330,6 @@ if(isset($_REQUEST["op"]))
       "message"=> "Not Found"
    );
    echo json_encode($responseCode);
-
 }
    
 
