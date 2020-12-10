@@ -4,7 +4,7 @@
         const user = localStorage.getItem("UserId");
         console.log("here")
         if(user==null)
-            location.replace("http://localhost/LMS/Login/login.html");
+            location.replace("http://localhost/LMS/Login");
             //console.log("herer");
     }
     checkLogin();

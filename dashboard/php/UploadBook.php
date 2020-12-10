@@ -167,7 +167,7 @@ function GetCardData(){
 
     . "    (SELECT COUNT(*) FROM user WHERE ROLE = 2) AS users, \n"
 
-    . "    (SELECT COUNT(*) FROM borrow WHERE STATUS=\"PENDING\") AS borrowers";
+    . "    (SELECT COUNT(*) FROM borrow WHERE STATUS=\"Assigned\") AS borrowers";
     
    $result=mysqli_query($conn,$sql);
    $row = mysqli_fetch_assoc($result);
@@ -193,10 +193,10 @@ function DeleteBookFromServer($path){
 
 
 
-function DeleteBookWithId($string){
+function DeleteBookWithId(){
    global $conn;
 
-   $bookId = getEscapedString($string);
+   $bookId = getEscapedString($_POST['bookId']);
    mysqli_autocommit($conn,FALSE);
 
    try{

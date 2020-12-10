@@ -4,7 +4,7 @@
         const user = localStorage.getItem("UserId");
         
         if(user==null)
-            location.replace("http://localhost/LMS/Login/login.html");
+            location.replace("http://localhost/LMS/Login/");
             //console.log("herer");
     }
     checkLogin();
@@ -29,7 +29,7 @@
     $("#btn-Logout").click(function(e){
         e.preventDefault()
         localStorage.removeItem("UserId");
-        location.replace("http://localhost/LMS/Login/login.html");
+        location.replace("http://localhost/LMS/Login/");
     
     })
 

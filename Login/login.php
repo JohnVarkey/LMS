@@ -28,7 +28,7 @@ if(mysqli_num_rows($result) == 0){
 if($flag){
     $responseCode = array(
         "code"=>403,
-        "message"=> $password
+        "message"=> "Username or Password is Incorrect"
         );
 }else{
     if($row['ROLE']=="1")
@@ -44,7 +44,7 @@ if($flag){
             "code"=>200,
             "message"=> array(
                 "id"=>$row["USER_ID"],
-                "Role"=>"u"
+                "role"=>"u"
             )
         );
 }

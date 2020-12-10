@@ -71,9 +71,9 @@
     
     localStorage.setItem("UserId", id);
     if(role=="a"){
-      location.replace("../dashboard/AdminDashboard/admindashboard.html");
+      location.replace("../dashboard/AdminDashboard");
     }else{
-      location.replace("../dashboard/AdminDashboard/userdashboard.html");
+      location.replace("../dashboard/UserDashboard");
     }
     
   }
