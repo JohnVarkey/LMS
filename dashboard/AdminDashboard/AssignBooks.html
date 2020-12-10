@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,22 +44,28 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item ">
-                <a class="nav-link" href="./index.html">
+                <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Admin Dashboard</span></a>
             </li>
 
 
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item ">
-                <a class="nav-link" href='./ViewBooks.html'>
+                <a class="nav-link" href="ViewBooks.html">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Manage Books</span>
                 </a>
             </li>
 
-            <li class="nav-item active ">
-                <a class="nav-link" href='#'>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Assign Books</span>
+                </a>
+            </li>
+
+            <li class="nav-item ">
+                <a class="nav-link" href="ReturnBooks.html">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Return Books</span>
                 </a>
@@ -75,7 +80,6 @@
             </div>
 
         </ul>
-    
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -84,6 +88,7 @@
             <!-- Main Content -->
             <div id="content">
 
+                <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
@@ -91,19 +96,6 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2" id="SearchBox">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -127,38 +119,54 @@
                     </ul>
 
                 </nav>
+                <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
+                    
                     <!-- Content Row -->
+                    <div class="row justify-content-center">
+
+            
                     <!-- Add Bookd -->
-                    <div class="card shadow mb-4">
+                    <div class="card shadow mb-4 w-50">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Manage Users</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Assign Books</h6>
                         </div>
                         <div class="card-body">
                             
-                            <div class="card-body p-0">
-                                <table class="table table-hover table table-bordered">
-                                    <thead>
-                                            <tr>
-                                                <th>User Id</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Assigned Books Id</th>
-                                                <th>Return Date</th>
-                                                <th>Status</th>
-                                            </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr></tr>
-                                    </tbody>
-                                </table>          
-                                        
-                                </div>
+                            <div class="card-body p-0 w-100">
+                                        <!-- Assign Books Form Data -->
+                                            
+                                    <div class="justify-content-center">
+                                        <form class="user" action="../php/AdminUser.php" method="POST" id="Form" enctype = "multipart/form-data">
 
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-control-user"
+                                                name="bookId" id="bookId" placeholder="Book Id" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-control-user"
+                                                name="userId" id="userId"  placeholder="User Id" required>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="returnDate"> Return Date</label>
+                                                <input type="date" class="form-control form-control-user"
+                                                name="returnDate" id="returnDate"  placeholder="Return Date" required>
+                                            </div>
+
+                                            <input type="submit" class="btn btn-primary btn-user btn-block"  name="Assign" id="Assign">
+                                            <hr>
+                                            
+                                        </form>
+                                        <hr>
+                                    </div>
+                                            
                             </div>
+                        </div>
                     </div>
 
                 </div>
@@ -192,7 +200,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" id="Logout" >Logout</a>
+                    <a class="btn btn-primary" id="btn-Logout" >Logout</a>
                 </div>
             </div>
         </div>
@@ -208,7 +216,7 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
     <script src="js/bootstrap-filestyle-2.1.0/src/bootstrap-filestyle.min.js"></script>
-    <script src="js/returnbooks.js"></script>
+    <script src="js/assignbooks.js"></script>
 
 </body>
 

@@ -9,15 +9,19 @@
     }
     checkLogin();
 
-    const tabledata= () => {
+    const tabledata= (title="" , author="" , publisher="") => {
         $.get(
             "../php/GetBooks.php",
             {
-                op: 1
+                op: 2,
+                filter:{
+                    title,
+                    author,
+                    publisher
+                }
             },
                 function (response) {
                     const data = JSON.parse(response);
-                    console.log(data);
                     populateTable(data);
                     
             }
@@ -37,6 +41,7 @@
     
     const populateTable = (data)=>{
         const parent = $("tbody");
+        parent.html("");
         data.forEach((row)=>{
             var childEle = `
                 <tr 
@@ -106,6 +111,7 @@
         )
     })
 
+
     $("#deleteBook").on("click",()=>{
         const id = $("#BOOK_ID").val();
         if(confirm("Do you want to Delete?")){
@@ -154,6 +160,11 @@
                     }
             }
         )
+    })
+
+    $("#searchBox").on("keyup",(e)=>{
+        const { value } = e.target;
+        tabledata(value);
     })
 
 

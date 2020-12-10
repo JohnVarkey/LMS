@@ -43,14 +43,13 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item ">
+            <li class="nav-item">
                 <a class="nav-link" href="./index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Admin Dashboard</span></a>
             </li>
 
 
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item active">
                 <a class="nav-link" href='#'>
                     <i class="fas fa-fw fa-cog"></i>
@@ -58,7 +57,15 @@
                 </a>
             </li>
 
-            <li class="nav-item active">
+            <li class="nav-item">
+                <a class="nav-link" href="AssignBooks.html">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Assign Books</span>
+                </a>
+            </li>
+            
+
+            <li class="nav-item">
                 <a class="nav-link" href='ReturnBooks.html'>
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Return Books</span>
@@ -97,7 +104,7 @@
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
+                                aria-label="Search" aria-describedby="basic-addon2" id="searchBox">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
@@ -230,17 +237,6 @@
                         </a>
                         <a 
                             class="nav-item nav-link" 
-                            id="nav-Users-tab" 
-                            data-toggle="tab" 
-                            href="#nav-Users" 
-                            role="tab" 
-                            aria-controls="nav-Users" 
-                            aria-selected="false"
-                        >
-                            Users
-                        </a>
-                        <a 
-                            class="nav-item nav-link" 
                             id="nav-Actions-tab" 
                             data-toggle="tab" 
                             href="#nav-Actions" 
@@ -329,14 +325,6 @@
                                     rows=10
                                     required 
                                 ></textarea>
-                            </div>
-                            <div 
-                                class="tab-pane fade" 
-                                id="nav-Users" 
-                                role="tabpanel"
-                                aria-labelledby="nav-Users-tab"
-                            >
-                                ..4.
                             </div>
                             <div 
                                 class="tab-pane fade" 

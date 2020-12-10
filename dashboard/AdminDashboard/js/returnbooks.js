@@ -12,6 +12,7 @@
     const populateTable = data =>{
         console.log(data);
         const parentEle = $("tbody");
+        parentEle.html("");
         data.forEach(row=>{
             var childEle = ` 
             <tr>
@@ -32,14 +33,14 @@
         })
     }
 
-    const getData = ()=>{
+    const getData = (userName)=>{
         $.get(
             "../php/AdminUser.php" ,
             {
-                op: 1
+                op: 1,
+                userName
             },
             function (response) {
-
                 const data = JSON.parse(response);
                 populateTable(data);
           
@@ -47,7 +48,7 @@
         )
     }
 
-    getData();
+    getData("");
 
 
     $("tbody").on("submit","form",(e)=>{
@@ -69,6 +70,12 @@
             }
         )
         
+    })
+
+
+    $("#SearchBox").on("keyup",(e)=>{
+        const { value } = e.target;
+        getData(value);
     })
 
 
