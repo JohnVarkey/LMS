@@ -11,7 +11,7 @@ if($_POST['submit']){
 
     $sql = "INSERT INTO `user` (`Email`, `NAME`, `PASSWORD`, `PHONE_NUMBER`) VALUES ( '$email', '$name', '$hashed_password','$phone')";
     if (mysqli_query($conn, $sql)) {
-        header("Location: http://$url/Login/login.html"); 
+        header("Location: http://$url/Login/"); 
       } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
       }

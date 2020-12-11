@@ -30,13 +30,15 @@
     const filepath = "http://localhost/LMS/Assets/book_images/";
 
     function displayToast(message) {
-        var x = $("#snackbar");
-        x.html(message);
-        x.attr("class","show");
-        setTimeout(function(){
-                x.attr("class","");
-            }
-        ,3000);
+        // var x = $("#snackbar");
+        // x.html(message);
+        // x.attr("class","show");
+        // setTimeout(function(){
+        //         x.attr("class","");
+        //     }
+        // ,3000);
+
+        alert(message);
     }
 
     $("#upload").click(function(e){
@@ -58,14 +60,14 @@
                         const data = JSON.parse(response);
                         console.log(data);
                         if(data.code==500)
-                            console.log(data.message)
+                            alert(data.message)
                             //displayToast(data.message);
                         else if(data.code==201){
                             var uploadedfile=data.message.filename;
                             $("#ImageBook").css("background-image", `url('${filepath+uploadedfile}')`); //filepath+uploadedfile
                             $("#bookImageUrl").attr("value",uploadedfile);
                             $("#upload").attr("type","hidden");
-                            console.log("Success")
+                            alert("Success")
                             //displayToast("Book Image Uploaded Successfully");
                         }
                 

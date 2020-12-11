@@ -21,7 +21,8 @@
                 const { code , message }=JSON.parse(response);
                 if(code==201){
                     console.log(message);
-                } 
+                }
+                alert(message); 
             }
         );
     })
