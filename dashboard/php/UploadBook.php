@@ -129,7 +129,7 @@ function UploadToDB(){
       $result=mysqli_query($conn,"INSERT INTO book1 VALUES ($bookId, '$bookTitle', '$bookAuthor','$bookPublisher')");
       checkerr($conn,$result);
     
-      $result=mysqli_query($conn,"INSERT INTO book2 VALUES ($bookId, '$bookTitle', '$bookAuthor',$bookCopies,1)");
+      $result=mysqli_query($conn,"INSERT INTO book2 VALUES ($bookId, '$bookTitle', '$bookAuthor',$bookCopies)");
       checkerr($conn,$result);
     
       $result=mysqli_query($conn,"INSERT INTO `image` VALUES ($bookId,'$bookImageUrl')");

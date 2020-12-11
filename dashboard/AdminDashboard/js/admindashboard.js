@@ -91,11 +91,11 @@
                         const data = JSON.parse(response);
                         console.log(data);
                         if(data.code==403)
-                            displayToast(data.message);
+                            alert(data.message);
                         else if(data.code==201)
-                            displayToast("Book Added");
+                            alert("Book Added");
                         else{
-                            displayToast(data.message);
+                            alert(data.message);
                         }
                 }
             )
