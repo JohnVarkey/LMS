@@ -5,7 +5,7 @@ jQuery(document).ready(function($) {
     const checkLogin = () =>{
       const user = localStorage.getItem("UserId");
       if(user==null)
-          location.replace("http://localhost/LMS/Login/login.html");
+          location.replace("http://localhost/LMS/Login/");
           //console.log("herer");
       alert(`Your User Id is : ${user}`);
     }
@@ -92,7 +92,7 @@ jQuery(document).ready(function($) {
     localStorage.removeItem("UserId");
     location.replace("http://localhost/LMS/Login/");
 
-})
+  })
 
 
  

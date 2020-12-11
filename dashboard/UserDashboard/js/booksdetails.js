@@ -4,7 +4,7 @@
     const checkLogin = () =>{
       const user = localStorage.getItem("UserId");
       if(user==null)
-          location.replace("http://localhost/LMS/Login/login.html");
+          location.replace("http://localhost/LMS/Login/");
           //console.log("herer");
     }
     
@@ -104,7 +104,13 @@
             payload,
             function (response) {
                 const data = JSON.parse(response);
-                alert(data.message);
+                if(data.code==404){
+                    alert("Couldnt Post You Review. Make Sure your a Member");
+                }
+                else{
+                    alert("Successfully Posted");
+                }
+                
             
             }
         )
