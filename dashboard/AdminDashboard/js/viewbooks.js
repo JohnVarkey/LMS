@@ -123,13 +123,15 @@
                 },
                 (response)=>{
                     const {code, message} = JSON.parse(response);
-                    if(code==200){
+                    if(code==201){
                         alert(message);
+                        location.reload();
                     }else{
                         alert(message)
                     }
                 }
             )
+            
         }
     })
 
@@ -154,7 +156,7 @@
                     if(data.code==403)
                         displayToast(data.message);
                     else if(data.code==200)
-                        displayToast("Book Added");
+                        displayToast("Book Edited");
                     else{
                         displayToast(data.message);
                     }
