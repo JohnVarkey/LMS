@@ -124,9 +124,9 @@
                 (response)=>{
                     const {code, message} = JSON.parse(response);
                     if(code==200){
-                        console.log(message);
+                        alert(message);
                     }else{
-                        console.log(message)
+                        alert(message)
                     }
                 }
             )
@@ -134,7 +134,7 @@
     })
 
     const displayToast = message =>{
-        console.log(message);
+        alert(message);
     }
 
 

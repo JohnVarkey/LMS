@@ -296,6 +296,30 @@ function EditBookInDB(){
 
 }
 
+
+
+function PostReview(){
+
+   global $conn;
+   $bookId=getEscapedString($_POST["bookId"]);
+   $userId=getEscapedString($_POST["userId"]);
+   $bookrating=getEscapedString($_POST["rating"]);
+   $bookreview=getEscapedString($_POST["review"]);
+   $sql = "INSERT INTO `review` (`BOOK_ID`, `USER_ID`, `rating`, `review`) VALUES ($bookId, $userId, $bookrating, '$bookreview')";
+   if($result = mysqli_query($conn, $sql)){
+      $responseCode = array(
+         "code"=>201,
+         "message"=> "Successfull"
+      );
+   }else{
+      $responseCode = array(
+         "code"=>404,
+         "message"=> mysqli_error($conn)
+      );
+   }
+   echo json_encode($responseCode);
+}
+
 /**
  * This is used to handle all the request coming to UploadBook.php
  * requests are differentiated using an op parameter passed along with the required data
@@ -316,6 +340,9 @@ if(isset($_REQUEST["op"]))
          break;
       case 5:
          EditBookInDB();
+         break;
+      case 6:
+         PostReview();
          break;
       default:
          $responseCode = array(

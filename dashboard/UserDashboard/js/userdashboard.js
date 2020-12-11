@@ -1,13 +1,15 @@
 jQuery(document).ready(function($) {
 
-  const filepath = "http://localhost/LMS/Assets/book_images/";
+    const filepath = "http://localhost/LMS/Assets/book_images/";
 
-  const checkLogin = () =>{
-    const user = localStorage.getItem("UserId");
-    if(user==null)
-        location.replace("http://localhost/LMS/Login/login.html");
-        //console.log("herer");
-  }
+    const checkLogin = () =>{
+      const user = localStorage.getItem("UserId");
+      if(user==null)
+          location.replace("http://localhost/LMS/Login/login.html");
+          //console.log("herer");
+      alert(`Your User Id is : ${user}`);
+    }
+    
   checkLogin();
 
   function getData(){
@@ -19,12 +21,12 @@ jQuery(document).ready(function($) {
       "../php/GetBooks.php",
       payload,
       function (response) {
-        console.log(response)
         const data = JSON.parse(response);
         console.log(data);
         setmostvisited(data);
       }
     );
+    
   }
 
     getData()
@@ -54,7 +56,7 @@ jQuery(document).ready(function($) {
     
     $("#BooksSection").on("click","div.books",(e)=>{
       const id= e.target.getAttribute('name');
-      
+      window.location = 'BooksDetails.html?Id=' + id;
       console.log(id);
     })
 
@@ -88,7 +90,7 @@ jQuery(document).ready(function($) {
   $("#Logout").click(function(e){
     e.preventDefault()
     localStorage.removeItem("UserId");
-    location.replace("http://localhost/LMS/Login/login.html");
+    location.replace("http://localhost/LMS/Login/");
 
 })
 

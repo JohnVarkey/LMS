@@ -34,7 +34,7 @@ function GetBookDataWithId($bookId){
  
     global $conn;
     $bookId= getEscapedString($bookId);
-    $sql = "SELECT * FROM book1 , book2 , details WHERE book1.BOOK_ID = book2.BOOK_ID AND book1.BOOK_ID = details.BOOK_ID AND book1.BOOK_ID= $bookId";
+    $sql = "SELECT * FROM book1 , book2 , details, image WHERE book1.BOOK_ID = book2.BOOK_ID AND book1.BOOK_ID = details.BOOK_ID AND book1.BOOK_ID= $bookId AND image.BOOK_ID= book1.BOOK_ID";
     if($result=mysqli_query($conn,$sql)){
         $row = mysqli_fetch_assoc($result);
         $responseCode = array(
@@ -50,6 +50,45 @@ function GetBookDataWithId($bookId){
         return json_encode($responseCode);
     }
 }
+function getReviewswithId($bookId){
+
+    global $conn;
+    $bookId= getEscapedString($bookId);
+    $sql = "SELECT NAME, review FROM review, user WHERE review.BOOK_ID=$bookId AND user.USER_ID=review.USER_ID";
+    $review = []; 
+    if($result=mysqli_query($conn,$sql)){
+        while($row = mysqli_fetch_assoc($result)){
+            array_push($review,$row);
+        }
+    }
+    return $review;
+
+}
+
+
+function GetRatingAndReviewWithId($bookId){
+
+    global $conn;
+    $bookId= getEscapedString($bookId);
+    $sql = "SELECT AVG(`rating`) as rating FROM `review` WHERE `BOOK_ID`=$bookId";
+    $reviews = getReviewswithId($bookId);
+    if($result=mysqli_query($conn,$sql)){
+        $row = mysqli_fetch_assoc($result);
+        $responseCode = array(
+            "code"=> 200,
+            "rating"=> $row,
+            "review"=> $reviews
+        );
+        return json_encode($responseCode);
+    }else{
+        $responseCode = array(
+            "code"=> 404,
+            "message"=> mysqli_error($conn)
+        );
+        return json_encode($responseCode);
+    }
+
+}
 
 
 if(isset($_GET['op'])){
@@ -63,6 +102,9 @@ if(isset($_GET['op'])){
             break;
         case 3:
             echo GetBookDataWithId($_GET["bookId"]);
+            break;
+        case 4:
+            echo GetRatingAndReviewWithId($_GET["bookId"]);
             break;
         default:
             $responseCode = array(
