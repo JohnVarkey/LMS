@@ -1,43 +1,44 @@
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
+	const filepath = 'http://localhost/LMS/Assets/book_images/';
 
-    const filepath = "http://localhost/LMS/Assets/book_images/";
+	const checkLogin = () => {
+		const user = localStorage.getItem('UserId');
+		if (user == null) location.replace('http://localhost/LMS/Login/');
+		//console.log("herer");
+		alert(`Your User Id is : ${user}`);
+	};
 
-    const checkLogin = () =>{
-      const user = localStorage.getItem("UserId");
-      if(user==null)
-          location.replace("http://localhost/LMS/Login/");
-          //console.log("herer");
-      alert(`Your User Id is : ${user}`);
-    }
-    
-  checkLogin();
+	checkLogin();
 
-  function getData(){
-    let payload = {
-      op: 1,
-    }
+	function getData() {
+		let payload = {
+			op: 1,
+		};
 
-    $.get(
-      "../php/GetBooks.php",
-      payload,
-      function (response) {
-        const data = JSON.parse(response);
-        console.log(data);
-        setmostvisited(data);
-      }
-    );
-    
-  }
+		$.get('../php/GetBooks.php', payload, function (response) {
+			const data = JSON.parse(response);
+			console.log(data);
+			setmostvisited(data);
+		});
+	}
 
-    getData()
+  getData();
+  
+  $('#title').on('keyup', () => searchfilter());
+	$('#author').on('keyup', () => searchfilter());
+  $('#publisher').on('keyup', () => searchfilter());
+  $('#History').on('click',()=>{
+    console.log("c")
+    const user = localStorage.getItem('UserId');
+    location.href=`UserHistory.html?Id=${user}`;
+  })
 
-
-  function setmostvisited(data){
-    const parentDiv = $("#BooksSection");
-    parentDiv.html("");
-    const childarr = data.map(row=>{        
-        let imgurl = filepath+row.IMAGE_URL; 
-        let childDom = ` 
+	function setmostvisited(data) {
+		const parentDiv = $('#BooksSection');
+		parentDiv.html('');
+		const childarr = data.map((row) => {
+			let imgurl = filepath + row.IMAGE_URL;
+			let childDom = ` 
           <div class='books' id='1' name="${row.BOOK_ID}" >
             <div class="BookImage" >
             <img src="${imgurl}" alt="IMG" name="${row.BOOK_ID}">
@@ -47,54 +48,39 @@ jQuery(document).ready(function($) {
               <span>${row.AUTHOR}</span>
             </div>
           </div>`;
-        return childDom;
-    })
-    childarr.forEach(element => {
-      parentDiv.append(element);
-    });
-    }   
-    
-    $("#BooksSection").on("click","div.books",(e)=>{
-      const id= e.target.getAttribute('name');
-      window.location = 'BooksDetails.html?Id=' + id;
-      console.log(id);
-    })
+			return childDom;
+		});
+		childarr.forEach((element) => {
+			parentDiv.append(element);
+		});
+	}
+
+	$('#BooksSection').on('click', 'div.books', (e) => {
+		const id = e.target.getAttribute('name');
+		window.location = 'BooksDetails.html?Id=' + id;
+		console.log(id);
+	});
+
+	const searchfilter = () => {
+		const payload = {
+			op: 2,
+			filter: {
+				title: $('#title').val(),
+				author: $('#author').val(),
+				publisher: $('#publisher').val(),
+			},
+		};
+		$.get('../php/GetBooks.php', payload, function (response) {
+			const data = JSON.parse(response);
+			setmostvisited(data);
+		});
+	};
 
 
 
-    const searchfilter = () =>{
-      const payload = {
-        op: 2,
-        filter:{
-          title : $("#title").val(),
-          author : $("#author").val(),
-          publisher : $("#publisher").val()
-        }
-      }
-      $.get(
-        "../php/GetBooks.php",
-        payload,
-        function (response) {
-          const data = JSON.parse(response);
-          setmostvisited(data);
-        }
-      );
-
-    }
-
-  $("#title").on("keyup",()=>searchfilter());
-  $("#author").on("keyup",()=>searchfilter());
-  $("#publisher").on("keyup",()=>searchfilter());
-
-
-  $("#Logout").click(function(e){
-    e.preventDefault()
-    localStorage.removeItem("UserId");
-    location.replace("http://localhost/LMS/Login/");
-
-  })
-
-
- 
-
+	$('#Logout').click(function (e) {
+		e.preventDefault();
+		localStorage.removeItem('UserId');
+		location.replace('http://localhost/LMS/Login/');
+	});
 });

@@ -1,129 +1,148 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<!--
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		
+		<title>Books Info</title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
-Template 2093 Flight
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
 
-http://www.tooplate.com/view/2093-flight
+		<link rel="stylesheet" href="css/tooplate-style2.css" />
+		<link rel="stylesheet" href="css/tooplate-style.css" />
 
--->
-    	<title>Flight - Contact Page</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<link
+			href="https://fonts.googleapis.com/css?family=Spectral:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i"
+			rel="stylesheet"
+		/>
+		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet" />
 
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-        
-        <link rel="stylesheet" href="css/tooplate-style2.css">
-        <link rel="stylesheet" href="css/tooplate-style.css">
-        
+		<script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+	</head>
 
-        <link href="https://fonts.googleapis.com/css?family=Spectral:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+	<body>
+		<section class="page-heading" id="top">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6"></div>
+					<div class="col-md-6">
+						<div class="page-direction-button">
+							<a href="index.html"><i class="fa fa-home"></i>Go Back Home</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
-        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-    </head>
+		<section class="contact-us">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="section-heading" id="bookTitle">
+							<h2>Book Heading</h2>
+							<p>Author, publisher, Release Date</p>
+						</div>
+					</div>
+					<div class="col-md-6" id="bookImage">
+						<img src="../../Assets/book_images/103HP.jpeg" alt="" />
+					</div>
 
-<body>
+					<div class="col-md-4" id="synopsis">
+						<h6>Synopsis</h6>
+						<p>
+							Donec nisl felis, eleifend eu diam ut, condimentum finibus erat. Aliquam luctus commodo
+							ultricies. Etiam in tellus mi. Nam lobortis est magna, et rutrum ipsum lacinia id.
+						</p>
+					</div>
+					<div class="col-md-4" id="review">
+						<h6>Reviews</h6>
+						<p id="rating"></p>
+					</div>
+				</div>
+			</div>
+		</section>
 
+		<section class="contact-form">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="section-heading">
+							<h2>Leave your Review</h2>
+						</div>
+					</div>
+					<div class="col-md-6 col-md-offset-3">
+						<form id="reviewForm" action="#" method="post">
+							<div class="row">
+								<div class="col-md-6"></div>
+								<div class="col-md-6">
+									<fieldset>
+										<input
+											name="email"
+											type="text"
+											form="reviewForm"
+											class="form-control"
+											id="userId"
+											placeholder="Your UserId"
+											required
+										/>
+									</fieldset>
+								</div>
+								<div class="col-md-12">
+									<fieldset>
+										<textarea
+											name="message"
+											rows="6"
+											form="reviewForm"
+											class="form-control"
+											id="message"
+											placeholder="Your message..."
+											required
+										></textarea>
+									</fieldset>
+								</div>
+								<div class="col-md-6">
+									<fieldset>
+										<input
+											name="number"
+											type="text"
+											form="reviewForm"
+											class="form-control"
+											id="rating"
+											placeholder="Enter Rating /5"
+											required
+										/>
+										<input
+											name="text"
+											type="hidden"
+											form="reviewForm"
+											class="form-control"
+											id="bookid"
+											required
+										/>
+									</fieldset>
+								</div>
+								<div class="col-md-12">
+									<fieldset>
+										<button type="submit" id="form-submit" class="btn">Submit Your Review</button>
+									</fieldset>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
 
-    <section class="page-heading" id="top">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    
-                </div>
-                <div class="col-md-6">
-                    <div class="page-direction-button">
-                        <a href="index.html"><i class="fa fa-home"></i>Go Back Home</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+		<script src="vendor/jquery/jquery.min.js"></script>
+		<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
+		<script src="js/plugins.js"></script>
+		<script src="js/plugins.js"></script>
 
-
-    <section class="contact-us">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section-heading" id="bookTitle">
-                        <h2>Book Heading</h2>
-                        <p> Author, publisher, Release Date</p>
-                    </div>
-                </div>
-                <div class="col-md-6" id="bookImage">
-                    <img src="../../Assets/book_images/103HP.jpeg" alt="">
-                </div>
-                
-                
-                <div class="col-md-4" id="synopsis">
-                    <h6>Synopsis</h6>
-                    <p>Donec nisl felis, eleifend eu diam ut, condimentum finibus erat. Aliquam luctus commodo ultricies. Etiam in tellus mi. Nam lobortis est magna, et rutrum ipsum lacinia id.</p>
-                </div>
-                <div class="col-md-4" id="review">
-                    <h6 >Reviews</h6>
-                    <p id="rating"></p>
-                
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <section class="contact-form">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section-heading">
-                        <h2>Leave your Review</h2>
-                    </div>
-                </div>
-                <div class="col-md-6 col-md-offset-3">
-                    <form id="reviewForm" action="#" method="post">
-                        <div class="row">
-                            <div class="col-md-6">
-                            </div>
-                            <div class="col-md-6">
-                                <fieldset>
-                                    <input name="email" type="text" form="reviewForm" class="form-control" id="userId" placeholder="Your UserId" required>
-                                </fieldset>
-                            </div>
-                            <div class="col-md-12">
-                                <fieldset>
-                                    <textarea name="message" rows="6" form="reviewForm" class="form-control" id="message" placeholder="Your message..." required></textarea>
-                                </fieldset>
-                            </div>
-                            <div class="col-md-6">
-                                <fieldset>
-                                    <input name="number" type="text" form="reviewForm" class="form-control" id="rating" placeholder="Enter Rating /5" required>
-                                    <input name="text" type="hidden" form="reviewForm" class="form-control" id="bookid" required>
-                                </fieldset>
-                            </div>
-                            <div class="col-md-12">
-                                <fieldset>
-                                    <button type="submit" id="form-submit" class="btn">Submit Your Review</button>
-                                </fieldset>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    
-    <script src="js/plugins.js"></script>
-    <script src="js/plugins.js"></script>
-   
-    <script src="js/booksdetails.js"></script>
-</body>
+		<script src="js/booksdetails.js"></script>
+	</body>
 </html>

@@ -2,7 +2,7 @@
 
 require_once '../../config.php';
 
-function GetAllBorrowers(){
+function GetAllBorrowersAssigned(){
 
     global $conn;
     $username = getEscapedString($_GET["userName"]);
@@ -15,6 +15,33 @@ function GetAllBorrowers(){
         }
     }
     return json_encode($responseArray);
+}
+
+
+function GetAllBorrowedBooksByUserId(){
+
+    global $conn;
+    $userId = getEscapedString($_GET["userId"]);
+    $sql = "SELECT BORROW_ID, user.USER_ID, EMAIL, NAME, TITLE, ISSUE_DATE, RETURN_DATE, STATUS FROM borrow , user , book1 where user.USER_ID=borrow.USER_ID And book1.BOOK_ID=borrow.BOOK_ID  And borrow.USER_ID = $userId"; 
+    $result = mysqli_query($conn, $sql);
+    $responseArray = [];
+    if($result){
+        while($row = mysqli_fetch_assoc($result)){
+            array_push($responseArray, $row);
+        }
+    }
+    return json_encode($responseArray);
+}
+
+function NextBookDateByBookId(){
+
+    global $conn;
+    $bookId = getEscapedString($_GET["bookId"]);
+    $sql = "SELECT MIN(RETURN_DATE) AS RETURN_DATE FROM borrow WHERE BOOK_ID=$bookId";
+    
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    return json_encode($row);
 }
 
 
@@ -72,7 +99,7 @@ function AssignBookToUser(){
 if(isset($_REQUEST["op"])){
     switch($_REQUEST["op"]){
         case 1:
-            echo GetAllBorrowers();
+            echo GetAllBorrowersAssigned();
             break;
         case 2:
             echo ChangeBorrowStatus();
@@ -80,6 +107,12 @@ if(isset($_REQUEST["op"])){
         case 3:
             echo AssignBookToUser();
             break;
+        case 4:
+            echo GetAllBorrowedBooksByUserId();
+            break;
+        case 5:
+            echo NextBookDateByBookId();
+            break;  
         default:
             $responseCode = array(
                 "code"=> 500,
