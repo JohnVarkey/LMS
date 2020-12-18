@@ -75,33 +75,25 @@
         });
     });
 
-    $("form").submit(function(e){
-        e.preventDefault();
-        const form = $(this).serializeArray();
-        form.push({name: "op", value: 2})
-        const  url = $(this).attr('action');
-        if($("#bookImageUrl").val()==""){
-            displayToast("Upload Image");
-        }else{
-            $.get(
-                url ,
-                form,
-                    function (response) {
-                        console.log(response);
-                        const data = JSON.parse(response);
-                        console.log(data);
-                        if(data.code==403)
-                            alert(data.message);
-                        else if(data.code==201)
-                            alert("Book Added");
-                        else{
-                            alert(data.message);
-                        }
-                }
-            )
-        }
-         
-    })
+    $('form').submit(function (e) {
+		e.preventDefault();
+		const form = $(this).serializeArray();
+		form.push({ name: 'op', value: 2 });
+		const url = $(this).attr('action');
+		if ($('#bookImageUrl').val() == '') {
+			displayToast('Upload Image');
+		} else {
+			$.get(url, form, function (response) {
+				const data = JSON.parse(response);
+				console.log(data);
+				if (data.code == 403) alert(data.message);
+				else if (data.code == 201) alert('Book Added');
+				else {
+					alert(data.message);
+				}
+			});
+		}
+	});
 
     $("#Logout").click(function(e){
         e.preventDefault()

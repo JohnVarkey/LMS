@@ -27,6 +27,38 @@
         );
     })
     
+    $("#bookId").on("change",(e)=>{
+        const Id = e.target.value;
+        $("#Assign").attr("disabled", false);
+        $.get(
+            "../php/GetBooks.php",
+            {
+                op: 3,
+                bookId: Id
+            },
+                function (response) {
+                    const data = JSON.parse(response);
+           
+                    if(data.message==null|| data.code!=200){
+                            $("#bookStatus").text("Book Not Found");
+                            $("#bookStatus").css("color","red");
+                            $("#Assign").attr("disabled", true);
+                    }else{
+                        const{AVAILABLE: Available} = data.message;
+                        $("#bookStatus").text(`Available Copies: ${Available}`);
+                        if(Available>0)
+                            $("#bookStatus").css("color","Green");
+                        else{
+                            $("#bookStatus").css("color","red");
+                            $("#Assign").attr("disabled", true);
+                        }
+                    }
+                }
+        )
+    })
+
+
+
     $("#btn-Logout").click(function(e){
         e.preventDefault()
         localStorage.removeItem("UserId");

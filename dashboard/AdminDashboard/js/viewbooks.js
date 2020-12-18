@@ -22,6 +22,7 @@
             },
                 function (response) {
                     const data = JSON.parse(response);
+                    console.log(data);
                     populateTable(data);
                     
             }
@@ -79,6 +80,7 @@
                 "AUTHOR",
                 "BOOK_ID",
                 "COPIES",
+                "AVAILABLE",
                 "DESCRIPTION",
                 "EDITION",
                 "PRICE",

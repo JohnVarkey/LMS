@@ -101,7 +101,7 @@ function UploadImage(){
 
 
 
-function UploadToDB(){
+function UploadBookToDB(){
    global $conn;
    $bookTitle=getEscapedString($_GET["bookTitle"]);
    $bookId=getEscapedString($_GET["bookId"]);
@@ -129,7 +129,7 @@ function UploadToDB(){
       $result=mysqli_query($conn,"INSERT INTO book1 VALUES ($bookId, '$bookTitle', '$bookAuthor','$bookPublisher')");
       checkerr($conn,$result);
     
-      $result=mysqli_query($conn,"INSERT INTO book2 VALUES ($bookId, '$bookTitle', '$bookAuthor',$bookCopies)");
+      $result=mysqli_query($conn,"INSERT INTO book2 VALUES ($bookId, '$bookTitle', '$bookAuthor',$bookCopies,$bookCopies )");
       checkerr($conn,$result);
     
       $result=mysqli_query($conn,"INSERT INTO `image` VALUES ($bookId,'$bookImageUrl')");
@@ -330,7 +330,7 @@ if(isset($_REQUEST["op"]))
          UploadImage();
          break;
       case 2:
-         UploadToDB();
+         UploadBookToDB();
          break;
       case 3:
          GetCardData();

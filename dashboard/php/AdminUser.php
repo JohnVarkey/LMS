@@ -2,7 +2,6 @@
 
 require_once '../../config.php';
 
-
 function GetAllBorrowers(){
 
     global $conn;
@@ -47,10 +46,9 @@ function AssignBookToUser(){
     global $conn;
     $bookId = getEscapedString($_POST["bookId"]);
     $userId = getEscapedString($_POST["userId"]);
-    $returnDate = getEscapedString($_POST["returnDate"]);
-    $returnDate = date('Y-m-d', strtotime($returnDate));
 
-    $sql = "INSERT INTO `borrow` (`USER_ID`, `BOOK_ID`, `RETURN_DATE` ) VALUES ( $userId, $bookId, '$returnDate' )";
+
+    $sql = "INSERT INTO `borrow` (`USER_ID`, `BOOK_ID`, `RETURN_DATE` ) VALUES ( $userId, $bookId, DATE_ADD(CURRENT_DATE(), INTERVAL 1 WEEK))";
     $result = mysqli_query($conn, $sql);
     if(!$result){
         $responseCode = array(

@@ -20,6 +20,13 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/AdminDashboard.css">
+    <style>
+        #bookStatus{
+            font-size: .8rem;
+            margin-top: 10px;
+            margin-right: 5px;
+        }
+    </style>
 
 </head>
 
@@ -145,17 +152,12 @@
                                             <div class="form-group">
                                                 <input type="text" class="form-control form-control-user"
                                                 name="bookId" id="bookId" placeholder="Book Id" required>
+                                                <span id="bookStatus"></span>
                                             </div>
 
                                             <div class="form-group">
                                                 <input type="text" class="form-control form-control-user"
                                                 name="userId" id="userId"  placeholder="User Id" required>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label for="returnDate"> Return Date</label>
-                                                <input type="date" class="form-control form-control-user"
-                                                name="returnDate" id="returnDate"  placeholder="Return Date" required>
                                             </div>
 
                                             <input type="submit" class="btn btn-primary btn-user btn-block"  name="Assign" id="Assign">
